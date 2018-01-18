@@ -1,0 +1,8 @@
+svg {
+	fill: #757575;
+	cursor: pointer;
+	transition: .2s ease;
+}
+svg:hover {
+	fill: #444;
+}
