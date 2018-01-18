@@ -6,11 +6,10 @@ export default class Header extends Component {
     render() {
         return (
             <header class={style.header}>
-                <h3>MEP</h3>
+                <h4>MEP</h4>
                 <nav>
                     <Link activeClassName={style.active} href="/">Home</Link>
-                    <Link activeClassName={style.active} href="/profile">Me</Link>
-                    <Link activeClassName={style.active} href="/profile/john">John</Link>
+                    <Link activeClassName={style.active} href="/add">Add</Link>
                 </nav>
             </header>
         );

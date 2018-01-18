@@ -62,5 +62,5 @@ class ExpenseItem extends Component {
         );
     }
 }
-const E = connect('expenses', actions)(ExpenseItem);
-export default E;
+const ExpenseItemContainer = connect('expenses', actions)(ExpenseItem);
+export default ExpenseItemContainer;

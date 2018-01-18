@@ -35,4 +35,5 @@ button {
 div .button-clear {
 	float:right;
 	color: var(--primary-color) !important;
+	padding:0;
 }

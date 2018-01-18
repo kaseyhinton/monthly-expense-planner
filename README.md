@@ -1,4 +1,8 @@
-# {{ name }}
+# Monthly Expense Planner
+
+Keep track of your monthly recurring expenses
+
+preact, unistore, zangodb
 
 ## CLI Commands
 

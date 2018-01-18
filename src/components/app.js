@@ -3,11 +3,11 @@ import {Router} from 'preact-router';
 
 import Header from './header';
 import Home from '../routes/home';
-import Profile from '../routes/profile';
+import Add from '../routes/add';
 // import Home from 'async!../routes/home'; import Profile from
 // 'async!../routes/profile';
 
-import {Provider, connect} from 'unistore/preact'
+import {Provider} from 'unistore/preact'
 import store from '../store';
 import Helmet from 'preact-helmet';
 
@@ -40,8 +40,7 @@ export default class App extends Component {
           <Header/>
           <Router onChange={this.handleRoute}>
             <Home path="/"/>
-            <Profile path="/profile/" user="me"/>
-            <Profile path="/profile/:user"/>
+            <Add path="/add"/>
           </Router>
         </div>
       </Provider>
