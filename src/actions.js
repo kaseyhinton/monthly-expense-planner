@@ -7,36 +7,32 @@ let actions = state => ({
         expense.isPaid = false;
         console.log(expense);
         await expenses.insert(expense);
-        let all = await(expenses.find({})).toArray();
-        return {'expenses': all};
     },
 
     async updateExpense(state, expense) {
         await expenses.update({
             _id: expense.id
         }, {isPaid: expense.isPaid});
-        let all = await(expenses.find({})).toArray();
-        return {'expenses': all};
     },
 
     async findAll(state) {
         let all = await(expenses.find({})).toArray();
-        console.log(all);
         return {expenses: all};
     },
 
     async remove(state, expense) {
         await expenses.remove({_id: expense.id});
-        let all = await(expenses.find({})).toArray();
-        return {expenses: all};
     },
 
     async removeAll(state) {
         await expenses.remove({});
-        return {expenses: []}
     },
 
     async findOne(state) {}
+});
+
+store.subscribe(state => {
+    console.log(state);
 });
 
 export default actions;
