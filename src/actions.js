@@ -13,7 +13,7 @@ let actions = state => ({
         await expenses.update({
             _id: expense.id
         }, {isPaid: expense.isPaid});
-        store.setState({}, false, store.action(actions().findAll)());
+        store.action(actions().findAll)();
     },
 
     async findAll(state) {
