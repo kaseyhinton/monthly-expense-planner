@@ -16,18 +16,14 @@ class ExpenseItem extends Component {
                 id: this.props.id,
                 isPaid: !this.props.isPaid
             });
-        this
-            .props
-            .findAll();
+        // this     .props     .findAll();
     }
 
     remove = (event) => {
         this
             .props
             .remove({id: this.props.id});
-        this
-            .props
-            .findAll();
+        // this     .props     .findAll();
     }
     getFillColor() {
         return this.props.isPaid

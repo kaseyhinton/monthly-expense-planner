@@ -13,6 +13,7 @@ let actions = state => ({
         await expenses.update({
             _id: expense.id
         }, {isPaid: expense.isPaid});
+        store.setState({}, false, store.action(actions().findAll)());
     },
 
     async findAll(state) {
@@ -22,6 +23,7 @@ let actions = state => ({
 
     async remove(state, expense) {
         await expenses.remove({_id: expense.id});
+        store.setState({}, false, store.action(actions().findAll)());
     },
 
     async removeAll(state) {
@@ -30,9 +32,5 @@ let actions = state => ({
 
     async findOne(state) {}
 });
-
-store.subscribe(state => {
-    console.log(state);
-});
-
+store.subscribe(state => console.log(state));
 export default actions;
