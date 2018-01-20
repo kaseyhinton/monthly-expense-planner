@@ -1,5 +1,4 @@
 import {h, Component} from 'preact';
-import style from './style';
 import actions from '../../actions';
 import {connect} from 'unistore/preact';
 import {route} from 'preact-router';
@@ -33,7 +32,7 @@ class Add extends Component {
 
     render(props, {description, amount, dueDate}) {
         return (
-            <div class={style.add}>
+            <div class="route">
                 <h4>Add Monthly Expense</h4>
                 <input
                     type="text"
@@ -51,7 +50,7 @@ class Add extends Component {
                     onChange={this.onDueDateChanged}
                     value={dueDate}/>
                 <div>
-                    <button onClick={this.addExpense}>Add Expense</button>
+                    <button class="button" onClick={this.addExpense}>Add Expense</button>
                 </div>
             </div>
         )

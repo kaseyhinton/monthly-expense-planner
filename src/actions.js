@@ -1,6 +1,5 @@
 import store from './store';
 import {dbPromise} from './store';
-// let expenses = db.collection('expenses');
 import {guid} from './util';
 
 let actions = state => ({

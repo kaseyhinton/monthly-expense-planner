@@ -5644,6 +5644,10 @@ postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.16, postcss@^6.0.2:
     source-map "^0.6.1"
     supports-color "^5.1.0"
 
+preact-async-route@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/preact-async-route/-/preact-async-route-2.0.1.tgz#df1eb07be5eca9264d6749299a95b4a8fb37f6d2"
+
 preact-cli-plugin-fast-async@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/preact-cli-plugin-fast-async/-/preact-cli-plugin-fast-async-1.0.1.tgz#9dba988dcbe210a3a2dc69c016f1cc8d34d9693a"

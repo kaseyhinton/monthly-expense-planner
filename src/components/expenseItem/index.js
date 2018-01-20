@@ -1,6 +1,5 @@
 import {h, Component} from 'preact';
 import {Link} from 'preact-router/match';
-import style from './style';
 import {Provider, connect} from 'unistore/preact'
 import actions from '../../actions';
 
@@ -37,7 +36,7 @@ class ExpenseItem extends Component {
         isPaid
     }, state) {
         return (
-            <tr class={style.expenseItem}>
+            <tr>
                 <td>{description}</td>
                 <td>{amount}</td>
                 <td>{dueDate}</td>

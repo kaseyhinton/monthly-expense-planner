@@ -1,5 +1,4 @@
 import {h, Component} from 'preact';
-import style from './style';
 import {Provider, connect} from 'unistore/preact'
 import actions from '../../actions';
 import ExpenseItem from '../../components/expenseItem';
@@ -29,7 +28,7 @@ class Home extends Component {
         expenses
     }, state) {
         return (
-            <div class={style.home}>
+            <div class="route">
                 <h4>Monthly Expense Planner</h4>
                 <table>
                     <thead>
