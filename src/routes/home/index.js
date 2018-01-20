@@ -42,7 +42,7 @@ class Home extends Component {
                     </thead>
                     <tbody>
                         {expenses.map(expense => <ExpenseItem
-                            id={expense._id}
+                            id={expense.id}
                             description={expense.description}
                             amount={expense.amount}
                             dueDate={expense.dueDate}

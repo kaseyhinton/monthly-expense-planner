@@ -1,10 +1,11 @@
 import createStore from 'unistore';
-import zango from 'zangodb';
 
-let db = new zango.Db('mep', {
-    expenses: ['amount', 'dueDate', 'description', 'isPaid']
+import idb from 'idb';
+
+const dbPromise = idb.open('expenses-store', 1, upgradeDB => {
+    upgradeDB.createObjectStore('expenses');
 });
 
 let store = createStore({expenses: []});
-export {db}
+export {dbPromise}
 export default store;

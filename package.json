@@ -19,15 +19,15 @@
   "devDependencies": {
     "eslint": "^4.9.0",
     "eslint-config-synacor": "^2.0.2",
-    "preact-cli-plugin-async": "^1.0.0",
     "if-env": "^1.0.0",
-    "preact-cli": "^2.1.1"
+    "preact-cli": "^2.1.1",
+    "preact-cli-plugin-fast-async": "^1.0.1"
   },
   "dependencies": {
+    "idb": "^2.0.4",
     "preact": "^8.2.6",
     "preact-helmet": "^4.0.0-alpha-3",
     "preact-router": "^2.5.7",
-    "unistore": "^3.0.3",
-    "zangodb": "^1.0.7"
+    "unistore": "^3.0.3"
   }
 }

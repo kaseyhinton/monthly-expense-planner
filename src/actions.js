@@ -1,35 +1,51 @@
 import store from './store';
-import {db} from './store';
-let expenses = db.collection('expenses');
+import {dbPromise} from './store';
+// let expenses = db.collection('expenses');
+import {guid} from './util';
 
 let actions = state => ({
     async addExpense(state, expense) {
-        expense.isPaid = false;
-        console.log(expense);
-        await expenses.insert(expense);
-    },
-
-    async updateExpense(state, expense) {
-        await expenses.update({
-            _id: expense.id
-        }, {isPaid: expense.isPaid});
+        const db = await dbPromise;
+        const tx = db.transaction('expenses', 'readwrite');
+        const id = guid();
+        await tx
+            .objectStore('expenses')
+            .put({
+                id: id,
+                description: expense.description,
+                amount: expense.amount,
+                dueDate: expense.dueDate,
+                isPaid: false
+            }, id);
         store.action(actions().findAll)();
     },
 
     async findAll(state) {
-        let all = await(expenses.find({})).toArray();
-        return {expenses: all};
+        const db = await dbPromise
+        const allExpenses = await db
+            .transaction('expenses')
+            .objectStore('expenses')
+            .getAll();
+        store.setState({expenses: allExpenses});
     },
 
     async remove(state, expense) {
-        await expenses.remove({_id: expense.id});
-        store.setState({}, false, store.action(actions().findAll)());
+        const db = await dbPromise
+        const tx = db.transaction('expenses', 'readwrite');
+        await tx
+            .objectStore('expenses')
+            .delete(expense.id);
+        store.action(actions().findAll)();
     },
 
     async removeAll(state) {
-        await expenses.remove({});
+        const db = await dbPromise;
+        const tx = db.transaction('expenses', 'readwrite');
+        await tx
+            .objectStore('expenses')
+            .clear();
+        store.action(actions().findAll)();
     },
-
     async findOne(state) {}
 });
 store.subscribe(state => console.log(state));
