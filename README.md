@@ -2,7 +2,7 @@
 
 Keep track of your monthly recurring expenses
 
-preact, unistore, zangodb
+preact, unistore, indexeddb, milligram
 
 ## CLI Commands
 

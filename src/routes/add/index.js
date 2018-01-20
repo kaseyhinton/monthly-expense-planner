@@ -25,7 +25,7 @@ class Add extends Component {
     addExpense = (event) => {
         this
             .props
-            .addExpense({description: this.state.description, amount: this.state.amount, dueDate: this.state.dueDate})
+            .addOrUpdateExpense({description: this.state.description, amount: this.state.amount, dueDate: this.state.dueDate})
         this.setState({description: '', amount: '', dueDate: ''});
         route('/');
     }
@@ -50,7 +50,10 @@ class Add extends Component {
                     onChange={this.onDueDateChanged}
                     value={dueDate}/>
                 <div>
-                    <button class="button" onClick={this.addExpense}>Add Expense</button>
+                    <button
+                        style="position: absolute; bottom: 0; right:0"
+                        class="button"
+                        onClick={this.addExpense}>Add Expense</button>
                 </div>
             </div>
         )

@@ -11,24 +11,27 @@ class ExpenseItem extends Component {
     pay = (event) => {
         this
             .props
-            .updateExpense({
+            .addOrUpdateExpense({
                 id: this.props.id,
-                isPaid: !this.props.isPaid
+                isPaid: !this.props.isPaid,
+                description: this.props.description,
+                amount: this.props.amount,
+                dueDate: this.props.dueDate
             });
-        // this     .props     .findAll();
     }
 
     remove = (event) => {
         this
             .props
             .remove({id: this.props.id});
-        // this     .props     .findAll();
     }
+
     getFillColor() {
         return this.props.isPaid
             ? '#1abc9c'
             : '#757575';
     }
+
     render({
         description,
         amount,

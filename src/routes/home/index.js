@@ -25,7 +25,8 @@ class Home extends Component {
 
     render({
         addExpense,
-        expenses
+        expenses,
+        totalExpenses
     }, state) {
         return (
             <div class="route">
@@ -49,10 +50,17 @@ class Home extends Component {
 }
                     </tbody>
                 </table>
-                <div class="button button-clear" onClick={this.removeAll}>Delete All Items</div>
+                <h5 style="float: right;">Total Monthly Expenses: ${this.props.totalExpenses}
+                </h5>
+                <div
+                    style="position: absolute; bottom: 0; right:0"
+                    class="button button-clear"
+                    onClick={this.removeAll}>Delete All Items</div>
             </div>
         );
     }
 }
-const HomeContainer = connect(['expenses'], actions)(Home);
+const HomeContainer = connect([
+    'expenses', 'totalExpenses'
+], actions)(Home);
 export default HomeContainer;
