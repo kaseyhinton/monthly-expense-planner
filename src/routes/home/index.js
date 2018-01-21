@@ -2,20 +2,14 @@ import {h, Component} from 'preact';
 import {Provider, connect} from 'unistore/preact'
 import actions from '../../actions';
 import ExpenseItem from '../../components/expenseItem';
+import {route} from 'preact-router';
 
 class Home extends Component {
 
-    removeAll = (event) => {
-        if (typeof window === undefined) 
-            return;
-        
-        const result = window.confirm("Are you sure you want to delete all of your expenses?");
-        if (result) {
-            this
-                .props
-                .removeAll();
-        }
-    }
+    // removeAll = (event) => {     if (typeof window === undefined)         return;
+    //     const result = window.confirm("Are you sure you want to delete all of
+    // your expenses?");     if (result) {         this             .props
+    // .removeAll();     } }
 
     componentDidMount() {
         this
@@ -24,22 +18,20 @@ class Home extends Component {
     }
 
     render({
-        addExpense,
         expenses,
         totalExpenses
     }, state) {
         return (
             <div class="route">
-                <h4>Monthly Expense Planner</h4>
-                <table>
-                    <thead>
+                <table class="mui-table mui-table--bordered">
+                    <tbody>
                         <tr>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Due Date</th>
-                            <th>Actions</th>
+                            <td>Description</td>
+                            <td>Amount</td>
+                            <td>Due</td>
+                            <td>Actions</td>
                         </tr>
-                    </thead>
+                    </tbody>
                     <tbody>
                         {expenses.map(expense => <ExpenseItem
                             id={expense.id}
@@ -50,12 +42,13 @@ class Home extends Component {
 }
                     </tbody>
                 </table>
-                <h5 style="float: right;">Total Monthly Expenses: ${this.props.totalExpenses}
-                </h5>
-                <div
-                    style="position: absolute; bottom: 0; right:0"
-                    class="button button-clear"
-                    onClick={this.removeAll}>Delete All Items</div>
+                <h4 style="text-align: right;">Total Monthly Expenses: ${this.props.totalExpenses}
+                </h4>
+
+                <button
+                    style="position: fixed; right: 16px; bottom: 16px; font-size: 22px;"
+                    class="mui-btn mui-btn--fab mui-btn--primary"
+                    onClick={() => route('/add')}>+</button>
             </div>
         );
     }

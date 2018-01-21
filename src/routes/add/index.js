@@ -34,25 +34,28 @@ class Add extends Component {
         return (
             <div class="route">
                 <h4>Add Monthly Expense</h4>
-                <input
-                    type="text"
-                    placeholder="Description"
-                    onChange={this.onDescriptionChanged}
-                    value={description}/>
-                <input
-                    type="text"
-                    placeholder="Amount"
-                    onChange={this.onAmountChanged}
-                    value={amount}/>
-                <input
-                    type="text"
-                    placeholder="Due Date"
-                    onChange={this.onDueDateChanged}
-                    value={dueDate}/>
+                <div class="mui-textfield mui-textfield--float-label">
+                    <input
+                        autofocus
+                        ref={input => input && input.focus()}
+                        type="text"
+                        onChange={this.onDescriptionChanged}
+                        value={description}/>
+                    <label>Description</label>
+                </div>
+                <div class="mui-textfield mui-textfield--float-label">
+                    <input type="text" onChange={this.onAmountChanged} value={amount}/>
+                    <label>Amount</label>
+                </div>
+                <div class="mui-textfield mui-textfield--float-label">
+                    <input type="text" onChange={this.onDueDateChanged} value={dueDate}/>
+                    <label>Due</label>
+                </div>
+
                 <div>
                     <button
-                        style="position: absolute; bottom: 0; right:0"
-                        class="button"
+                        style="float: right;"
+                        class="mui-btn mui-btn--primary"
                         onClick={this.addExpense}>Add Expense</button>
                 </div>
             </div>
