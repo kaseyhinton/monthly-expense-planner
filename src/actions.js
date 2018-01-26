@@ -1,68 +1,56 @@
 import store from './store';
-import {dbPromise} from './store';
 import {guid} from './util';
 
 let actions = state => ({
-    async addOrUpdateExpense(state, expense) {
-        const db = await dbPromise;
-        const tx = db.transaction('expenses', 'readwrite');
-        let id;
-        let e;
-        if (expense.id) {
-            // patch
-            id = expense.id;
-            e = {
-                id: id,
-                description: expense.description,
-                amount: expense.amount,
-                dueDate: expense.dueDate,
-                isPaid: expense.isPaid
-            }
-        } else {
-            // post
-            id = guid();
-            e = {
-                id: id,
-                description: expense.description,
-                amount: expense.amount,
-                dueDate: expense.dueDate,
-                isPaid: false
-            }
+    add(state, expense) {
+        const e = {
+            id: guid(),
+            description: expense.description,
+            amount: expense.amount,
+            dueDate: expense.dueDate,
+            isPaid: false
         }
-        await tx
-            .objectStore('expenses')
-            .put(e, id);
-        store.action(actions().findAll)();
+        let exp = state.expenses;
+        exp.push(e);
+        return {expenses: exp}
     },
-    async findAll(state) {
-        const db = await dbPromise
-        const allExpenses = await db
-            .transaction('expenses')
-            .objectStore('expenses')
-            .getAll();
+    update(state, expense) {
+        const e = {
+            id: expense.id,
+            description: expense.description,
+            amount: expense.amount,
+            dueDate: expense.dueDate,
+            isPaid: expense.isPaid
+        }
+        let idx = state
+            .expenses
+            .map(i => i.id)
+            .indexOf(e.id);
+        state.expenses.splice(idx, 1, e);
+        return {expenses: state.expenses}
+    },
+    findAll(state) {
         let total = 0;
-        allExpenses.map(expense => {
-            total += parseInt(expense.amount, 10);
-        });
-        store.setState({expenses: allExpenses, totalExpenses: total});
+        let i = 0;
+        while (i < state.expenses.length) {
+            total += parseInt(state.expenses[i].amount, 10);
+            i++;
+        }
+        return {expenses: state.expenses, totalExpenses: total}
     },
-    async remove(state, expense) {
-        const db = await dbPromise
-        const tx = db.transaction('expenses', 'readwrite');
-        await tx
-            .objectStore('expenses')
-            .delete(expense.id);
-        store.action(actions().findAll)();
+    remove(state, expense) {
+        let idx = state
+            .expenses
+            .map(i => i.id)
+            .indexOf(expense.id);
+        let exp = state.expenses;
+        exp.splice(idx, 1);
+        return {expenses: exp}
     },
-    async removeAll(state) {
-        const db = await dbPromise;
-        const tx = db.transaction('expenses', 'readwrite');
-        await tx
-            .objectStore('expenses')
-            .clear();
-        store.action(actions().findAll)();
+    removeAll(state) {
+        return {expenses: []}
     },
-    async findOne(state) {}
+    findOne(state) {}
 });
 store.subscribe(state => console.log(state));
 export default actions;

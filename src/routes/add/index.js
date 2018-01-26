@@ -25,7 +25,7 @@ class Add extends Component {
     addExpense = (event) => {
         this
             .props
-            .addOrUpdateExpense({description: this.state.description, amount: this.state.amount, dueDate: this.state.dueDate})
+            .add({description: this.state.description, amount: this.state.amount, dueDate: this.state.dueDate})
         this.setState({description: '', amount: '', dueDate: ''});
         route('/');
     }

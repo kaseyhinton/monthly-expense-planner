@@ -11,7 +11,7 @@ class ExpenseItem extends Component {
     pay = (event) => {
         this
             .props
-            .addOrUpdateExpense({
+            .update({
                 id: this.props.id,
                 isPaid: !this.props.isPaid,
                 description: this.props.description,
@@ -24,12 +24,6 @@ class ExpenseItem extends Component {
         this
             .props
             .remove({id: this.props.id});
-    }
-
-    getFillColor() {
-        return this.props.isPaid
-            ? '#1abc9c'
-            : '#757575';
     }
 
     render({
@@ -55,7 +49,9 @@ class ExpenseItem extends Component {
                             style={{
                             width: 24,
                             height: 24,
-                            fill: this.getFillColor()
+                            fill: isPaid
+                                ? '#1abc9c'
+                                : '#757575'
                         }}
                             viewBox="0 0 24 24">
                             <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/>
@@ -67,5 +63,5 @@ class ExpenseItem extends Component {
         );
     }
 }
-const ExpenseItemContainer = connect('expenses', actions)(ExpenseItem);
+const ExpenseItemContainer = connect([], actions)(ExpenseItem);
 export default ExpenseItemContainer;
